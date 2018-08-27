@@ -1,0 +1,15 @@
+version: "3"
+services:
+  db:
+    container_name: ruboto-app-db
+    image: postgres
+  web:
+    container_name: ruboto-app
+    build: .
+    command: bash -c "while [ true ]; do sleep 10; done"
+    volumes:
+      - .:/app
+    ports:
+      - "3005:3000"
+    depends_on:
+      - db
